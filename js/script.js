@@ -48,46 +48,94 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Testimonial Slider
     if (testimonialDots.length > 0 && testimonials.length > 0) {
-        // Show the first testimonial by default
-        testimonials[0].style.display = 'block';
-        
-        // Handle dot clicks
-        testimonialDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                // Hide all testimonials
-                testimonials.forEach(testimonial => {
-                    testimonial.style.display = 'none';
-                });
-                
-                // Remove active class from all dots
-                testimonialDots.forEach(d => {
-                    d.classList.remove('active');
-                });
-                
-                // Show the selected testimonial and activate the dot
-                testimonials[index].style.display = 'block';
-                dot.classList.add('active');
-            });
-        });
-        
-        // Auto-rotate testimonials every 5 seconds
         let currentIndex = 0;
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % testimonials.length;
-            
-            // Hide all testimonials
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Function to show testimonial
+        function showTestimonial(index) {
+            // Remove active class from all testimonials and dots
             testimonials.forEach(testimonial => {
-                testimonial.style.display = 'none';
+                testimonial.classList.remove('active');
             });
-            
-            // Remove active class from all dots
             testimonialDots.forEach(dot => {
                 dot.classList.remove('active');
             });
             
-            // Show the next testimonial and activate the dot
-            testimonials[currentIndex].style.display = 'block';
-            testimonialDots[currentIndex].classList.add('active');
-        }, 5000);
+            // Show the selected testimonial and activate the dot
+            testimonials[index].classList.add('active');
+            testimonialDots[index].classList.add('active');
+        }
+        
+        // Next button click
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                showTestimonial(currentIndex);
+            });
+        }
+        
+        // Previous button click
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+                showTestimonial(currentIndex);
+            });
+        }
+        
+        // Handle dot clicks
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                showTestimonial(currentIndex);
+            });
+        });
+        
+        // Auto-rotate testimonials every 6 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % testimonials.length;
+            showTestimonial(currentIndex);
+        }, 6000);
+        
+        // Initialize first testimonial
+        showTestimonial(0);
     }
+    
+    // FAQ Accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const faqIcon = question.querySelector('.faq-icon');
+            
+            // Close all other FAQ items
+            faqQuestions.forEach(otherQuestion => {
+                const otherItem = otherQuestion.parentElement;
+                const otherAnswer = otherItem.querySelector('.faq-answer');
+                const otherIcon = otherQuestion.querySelector('.faq-icon');
+                
+                if (otherItem !== faqItem) {
+                    otherItem.classList.remove('active');
+                    otherAnswer.classList.remove('active');
+                    otherIcon.classList.remove('fa-minus');
+                    otherIcon.classList.add('fa-plus');
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (faqItem.classList.contains('active')) {
+                faqItem.classList.remove('active');
+                faqAnswer.classList.remove('active');
+                faqIcon.classList.remove('fa-minus');
+                faqIcon.classList.add('fa-plus');
+            } else {
+                faqItem.classList.add('active');
+                faqAnswer.classList.add('active');
+                faqIcon.classList.remove('fa-plus');
+                faqIcon.classList.add('fa-minus');
+            }
+        });
+    });
 });

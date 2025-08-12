@@ -340,10 +340,11 @@ nav {
     color: var(--primary-dark);
 }
 
+
 /* Pricing Section */
 .pricing {
     padding: 100px 0;
-    background-color: var(--white);
+    background-color: var(--gray-light);
 }
 
 .pricing-grid {
@@ -404,10 +405,44 @@ nav {
     background-color: var(--gray-light);
 }
 
-.testimonials-slider {
-    max-width: 800px;
+.testimonials-container {
+    position: relative;
+    max-width: 900px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.testimonials-slider {
+    flex: 1;
     overflow: hidden;
+    position: relative;
+}
+
+.testimonial-nav {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.testimonial-nav:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.testimonial-nav:active {
+    transform: scale(0.95);
 }
 /* Testimonial Styling */
 .testimonial {
@@ -416,6 +451,14 @@ nav {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     margin: 20px 0;
+    display: none;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.testimonial.active {
+    display: block;
+    opacity: 1;
 }
 
 .testimonial-text p {
@@ -456,10 +499,116 @@ nav {
     background-color: var(--primary-color);
 }
 
+.testimonial-actions {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-reviews {
+    background: #4285f4;
+    color: var(--white);
+    border: 2px solid #4285f4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-reviews:hover {
+    background: #3367d6;
+    border-color: #3367d6;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background: var(--primary-light);
+    color: var(--white);
+}
+
+.faq-question h3 {
+    color: var(--primary-dark);
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.faq-question:hover h3 {
+    color: var(--white);
+}
+
+.faq-icon {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.faq-question:hover .faq-icon {
+    color: var(--white);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: var(--white);
+}
+
+.faq-answer.active {
+    max-height: 200px;
+    transition: max-height 0.3s ease-in;
+}
+
+.faq-answer p {
+    padding: 20px;
+    margin: 0;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
 /* Contact Section */
 .contact {
     padding: 100px 0;
-    background-color: var(--white);
+    background-color: var(--gray-light);
 }
 
 .contact-content {
@@ -680,6 +829,20 @@ footer {
     
     .footer-links {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .testimonial-nav {
+        display: none;
+    }
+    
+    .testimonial-actions {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
