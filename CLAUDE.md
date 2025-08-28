@@ -16,7 +16,8 @@ This is a static website for "26 Hillside Laundry", a pickup/delivery laundry se
 ├── js/
 │   └── script.js      # JavaScript for mobile navigation and testimonial slider
 ├── images/            # Image assets (SVG logos, hero image, favicon)
-├── package.json       # Contains Firebase dependency
+├── robots.txt         # SEO robots file
+├── sitemap.xml        # SEO sitemap
 └── README.md          # Basic project documentation
 ```
 
@@ -29,7 +30,6 @@ This is a static website project. No build tools or test runners are configured.
 - Use a local HTTP server like `python -m http.server` or `npx serve .` for testing
 
 **Dependencies:**
-- Firebase (v11.9.1) - likely for analytics or hosting
 - Font Awesome (CDN) - for icons
 - Google Fonts (CDN) - Poppins font family
 
