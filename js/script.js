@@ -1,5 +1,34 @@
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', () => {
+    // Google Analytics Event Tracking for WhatsApp and Call buttons
+    function trackEvent(eventName, eventParams) {
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, eventParams);
+        }
+    }
+
+    // Track WhatsApp button clicks
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('contact_whatsapp', {
+                event_category: 'contact',
+                event_label: 'WhatsApp Click',
+                link_url: link.href
+            });
+        });
+    });
+
+    // Track Call button clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('contact_call', {
+                event_category: 'contact',
+                event_label: 'Phone Call Click',
+                phone_number: link.href.replace('tel:', '')
+            });
+        });
+    });
+
     // Variables
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
