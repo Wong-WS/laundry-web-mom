@@ -613,6 +613,7 @@
                 <h3>Phone</h3>
                 <p>
                   <a href="tel:+60164759137" class="phone-link"
+                    onclick="gtag('event', 'contact_call', {'event_category': 'contact', 'event_label': 'Phone Link'})"
                     >+60 16-475 9137</a
                   >
                 </p>
@@ -629,13 +630,15 @@
               </div>
             </div>
             <div class="contact-buttons">
-              <a href="tel:+60164759137" class="btn btn-primary">
+              <a href="tel:+60164759137" class="btn btn-primary"
+                onclick="gtag('event', 'contact_call', {'event_category': 'contact', 'event_label': 'Call Button'})">
                 <i class="fas fa-phone-alt"></i> Call Us
               </a>
               <a
                 href="https://wa.me/60164759137"
                 target="_blank"
                 class="btn btn-whatsapp"
+                onclick="gtag('event', 'contact_whatsapp', {'event_category': 'contact', 'event_label': 'WhatsApp Button'})"
               >
                 <i class="fab fa-whatsapp"></i> WhatsApp Us
               </a>
@@ -688,6 +691,7 @@
         <div class="footer-bottom">
           <div class="social-links">
             <a href="https://wa.me/60164759137" target="_blank"
+              onclick="gtag('event', 'contact_whatsapp', {'event_category': 'contact', 'event_label': 'WhatsApp Footer'})"
               ><i class="fab fa-whatsapp"></i
             ></a>
           </div>
